@@ -11,24 +11,6 @@ class App extends Component {
 
   render() {
     return (
-      /*
-      <Router>
-      <div>
-        <h2>Welcome to React Router Tutorial</h2>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <ul className="navbar-nav mr-auto">
-          <li><Link to={'/'} className="nav-link"> Home </Link></li>
-          <li><Link to={'/renda'} className="nav-link">Renda</Link></li>
-        </ul>
-        </nav>
-        <hr />
-        <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/renda' component={Renda} />
-        </Switch>
-      </div>
-    </Router>
-    */
 
       <div className="App">
         <div className="App-header">
@@ -52,7 +34,9 @@ class App extends Component {
                 <SideNav.Nav defaultSelected="home">
                   <NavItem eventKey="home">
                     <NavIcon>
-                      <i className="fa fa-fw fa-accessible-icon" style={{ fontSize: '1.75em' }} />
+                    <i class="material-icons">
+                      home
+                    </i>
                     </NavIcon >
                     <NavText>
                       Home
@@ -60,7 +44,9 @@ class App extends Component {
                   </NavItem>
                   <NavItem eventKey="renda">
                     <NavIcon>
-                      <i className="fa fa-fw fa-device" style={{ fontSize: '1.75em' }} />
+                    <i class="material-icons">
+                      attach_money
+                    </i>
                     </NavIcon>
                     <NavText>
                       Renda
