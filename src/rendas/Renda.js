@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
-import List from './List';
+import RendaView from './RendaView';
 
 class Renda extends Component {
 
@@ -9,48 +8,38 @@ class Renda extends Component {
     this.state = {
       renda: '',
       valor: '',
-      items: []
+      rendas: []
 
     }
   }
-  onChangeRenda = (event) => {
-    this.setState({ renda: event.target.value });
+  onChange = (event) => {
+    event.preventDefault();
+    const state = Object.assign({},this.state);
+    state[event.target.name] = event.target.value;
+    this.setState(state);
   }
-  onChangeValor = (event) => {
-    this.setState({ valor: event.target.value });
-  }
+
   onSubmit = (event) => {
     event.preventDefault();
+    const rendasList = this.state.rendas.slice();
+    rendasList.push(this.state.renda,this.state.valor);
     this.setState({
       renda: '',
       valor: '',
-      items: [...this.state.items, this.state.renda, this.state.valor]
+      rendas: rendasList
     });
   }
 
   render() {
     return (
-      <div>
-        <form className="Renda" onSubmit={this.onSubmit}>
-          <TextField
-            id="renda"
-            label="Renda"
-            margin="normal"
-            value={this.state.renda}
-            onChange={this.onChangeRenda}
-          />
-          <TextField
-            id="valor"
-            label="Valor"
-            margin="normal"
-            value={this.state.valor}
-            onChange={this.onChangeValor}
-          />
-          <button>Adicionar</button>
-        </form>
-        <List items={this.state.items} />
-      </div>
-
+      
+      <RendaView
+        rendas={this.state.rendas}
+        renda={this.state.renda}
+        valor={this.state.valor}
+        onChange={this.onChange}
+        onSubmit={this.onSubmit}
+        />
     );
   }
 }

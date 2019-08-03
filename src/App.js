@@ -7,6 +7,7 @@ import Home from "./home/Home"
 import Renda from "./rendas/Renda";
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+
 class App extends Component {
 
   render() {
@@ -34,7 +35,7 @@ class App extends Component {
                 <SideNav.Nav defaultSelected="home">
                   <NavItem eventKey="home">
                     <NavIcon>
-                    <i class="material-icons">
+                    <i className="material-icons">
                       home
                     </i>
                     </NavIcon >
@@ -44,7 +45,7 @@ class App extends Component {
                   </NavItem>
                   <NavItem eventKey="renda">
                     <NavIcon>
-                    <i class="material-icons">
+                    <i className="material-icons">
                       attach_money
                     </i>
                     </NavIcon>
