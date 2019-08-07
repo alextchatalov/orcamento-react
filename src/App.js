@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import "./style.css";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from "./home/Home"
 import Renda from "./rendas/Renda";
