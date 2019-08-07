@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-const RendaView = (props) => (
+const RendaView = (props) => {
+  return (
     <div>
         <form className="RendaView" onSubmit={props.onSubmit}>
             <TextField
@@ -49,7 +50,7 @@ const RendaView = (props) => (
           </Button>
         </form>
         {
-        props.rendas.map((renda) => renda)
+        props.rendas.map((renda,i) =>  <div key={i}>{renda.renda}: {renda.valor}</div>)
         }
       </div>
 );

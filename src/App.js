@@ -7,12 +7,19 @@ import Home from "./home/Home"
 import Renda from "./rendas/Renda";
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import { createMuiTheme } from '@material-ui/core';
+import {ThemeProvider} from '@material-ui/styles'
+
+const theme = createMuiTheme({
+  status: {
+  },
+});
 
 class App extends Component {
 
   render() {
     return (
-
+      <ThemeProvider theme={theme}>
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -64,6 +71,7 @@ class App extends Component {
           />
         </Router>
       </div>
+      </ThemeProvider>
     );
   }
 }

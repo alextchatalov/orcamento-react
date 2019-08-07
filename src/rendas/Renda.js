@@ -1,5 +1,26 @@
 import React, { Component } from 'react';
-import RendaView from './RendaView';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import {withStyles} from '@material-ui/styles';
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
+  },
+});
+
 
 class Renda extends Component {
 
@@ -21,8 +42,11 @@ class Renda extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
+    event.persist();
+    console.log(event);
     const rendasList = this.state.rendas.slice();
-    rendasList.push(this.state.renda,this.state.valor);
+    rendasList.push({renda:this.state.renda, valor:this.state.valor});
+    console.log(rendasList);
     this.setState({
       renda: '',
       valor: '',
@@ -31,8 +55,39 @@ class Renda extends Component {
   }
 
   render() {
+    const {classes: classe} = this.props;
     return (
-      
+      <div>
+        <form className={classe} onSubmit={this.onSubmit}>
+            <TextField
+                required
+                id="rend"
+                label="Renda"
+                name="renda"
+                className={classe.textField}
+                margin="normal"
+                value={this.state.renda}
+                onChange={this.onChange}
+            />
+               <TextField
+                required
+                id="valor"
+                label="Valor"
+                name="valor"
+                className={classe.textField}
+                margin="normal"
+                value={this.state.valor}
+                onChange={this.onChange}
+            />
+          <Button variant="contained" color="primary" type="submit">
+            Adicionar
+          </Button>
+        </form>
+        {
+        this.state.rendas.map((renda,i) =>  <div key={i}>{renda.renda}: {renda.valor}</div>)
+        }
+      </div>
+      /*
       <RendaView
         rendas={this.state.rendas}
         renda={this.state.renda}
@@ -40,8 +95,9 @@ class Renda extends Component {
         onChange={this.onChange}
         onSubmit={this.onSubmit}
         />
+        */
     );
   }
 }
 
-export default Renda;
+export default withStyles(styles)(Renda)
