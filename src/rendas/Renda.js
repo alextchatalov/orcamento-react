@@ -8,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import $ from 'jquery';
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -62,6 +63,17 @@ class Renda extends Component {
 
     }
   }
+
+  componentWillMount() {
+    $.ajax({
+      url: 'http://localhost:8081/rendas',
+      data: 'json',
+      success: function(resposta) {
+        console.log('Retorno de rendas: ', resposta);
+      }
+    });
+  }
+
   onChange = (event) => {
     event.preventDefault();
     const state = Object.assign({}, this.state);
