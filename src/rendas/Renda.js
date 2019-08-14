@@ -66,11 +66,11 @@ class Renda extends Component {
 
   componentWillMount() {
     $.ajax({
-      url: 'http://localhost:8081/rendas',
+      url: 'http://localhost:8081/api/v1/rendas',
       data: 'json',
       success: function(resposta) {
-        console.log('Retorno de rendas: ', resposta);
-      }
+        this.setState({rendas:resposta})
+      }.bind(this)
     });
   }
 
@@ -83,23 +83,29 @@ class Renda extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    event.persist();
-    console.log(event);
-    const rendasList = this.state.rendas.slice();
-    rendasList.push({ renda: this.state.renda, valor: this.state.valor });
-    console.log(rendasList);
-    this.setState({
-      renda: '',
-      valor: '',
-      rendas: rendasList
-    });
+    $.ajax({
+      url:'http://localhost:3000/api/v1/rendas',
+      contentType:'application/json',
+      dataType:'JSON',
+      type:'POST',
+      data:JSON.stringify({renda:this.state.renda, valor:this.state.valor}),
+      success: function(resposta) {
+        console.log('Renda salva com sucesso!');
+        this.setState({
+          rendas: resposta
+        });
+      }.bind(this),
+      error: function(error) {
+        console.log('Ocorreu um erro: ', JSON.stringify(error));
+      }
+    })
   }
 
   render() {
     const { classes: classe } = this.props;
     return (
       <div>
-        <form className={classe} onSubmit={this.onSubmit}>
+        <form className={classe} onSubmit={this.onSubmit.bind()}>
           <TextField
             required
             id="rend"
