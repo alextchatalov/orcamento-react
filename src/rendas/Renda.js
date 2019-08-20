@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import $ from 'jquery';
 
+const server = "http://localhost:8081";
+
 const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: '#009688',
@@ -66,7 +68,7 @@ class Renda extends Component {
 
   componentWillMount() {
     $.ajax({
-      url: 'http://localhost:8081/api/v1/rendas',
+      url: server + '/api/v1/rendas',
       data: 'json',
       success: function(resposta) {
         this.setState({rendas:resposta})
@@ -84,9 +86,9 @@ class Renda extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     $.ajax({
-      url:'http://localhost:3000/api/v1/rendas',
+      url: server + '/api/v1/rendas',
       contentType:'application/json',
-      dataType:'JSON',
+      dataType:'json',
       type:'POST',
       data:JSON.stringify({renda:this.state.renda, valor:this.state.valor}),
       success: function(resposta) {
